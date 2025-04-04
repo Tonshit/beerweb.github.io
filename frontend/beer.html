@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta name="description" content="Explore a wide variety of beers at our Beer Shop. Find your favorite brands and learn more about them.">
+    <meta name="keywords" content="beer, shop, alcoholic beverages, craft beer, local beverages">
+    <title>Beer Shop</title>
+    <!-- Favicon Link -->
+    <link rel="icon" href="https://static.vecteezy.com/system/resources/thumbnails/044/277/504/small_2x/two-beer-mugs-splash-toast-cheers-on-isolated-transparent-background-png.png" type="image/png"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="beer.css"> <!-- Link to the external CSS file -->
+</head>
+<body class="font-roboto">
+
+    <div class="flex justify-between w-full p-4 bg-black bg-opacity-70 sticky top-0 z-10">
+        <!-- Left Navigation Menu -->
+        <nav class="flex space-x-4">
+            <a class="text-white hover:text-yellow-500" href="frontcover.html"><i class="fas fa-home mr-2"></i>HOME</a>
+            <a class="text-white hover:text-yellow-500" href="beer.html"><i class="fas fa-beer mr-2"></i>BEERS</a>
+            <a class="text-white hover:text-yellow-500" href="about.html"><i class="fas fa-info-circle mr-2"></i>ABOUT</a>
+            <a class="text-white hover:text-yellow-500" href="cart.html"><i class="fas fa-shopping-cart mr-2"></i>CART</a>
+        </nav>
+        <!-- Right Navigation Menu -->
+        <nav class="flex space-x-4">
+            <a class="text-white hover:text-yellow-500" href="event.html"><i class="fas fa-calendar mr-2"></i>EVENTS</a>
+            <a class="text-white hover:text-yellow-500" href="https://beerandbrewing.com/category/Beer%20News/1/"><i class="fas fa-newspaper mr-2"></i>NEWS</a>
+            <a class="text-white hover:text-yellow-500" href="https://www.istockphoto.com/photos/drinking-beer"><i class="fas fa-images mr-2"></i>GALLERY</a>
+            <a class="text-white hover:text-yellow-500" href="contact.html"><i class="fas fa-envelope mr-2"></i>CONTACT</a>
+        </nav>
+    </div>
+
+    <main class="container mx-auto py-8 px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 h-screen">
+            <div class="relative flex items-center justify-center">
+                <img alt="Heineken beer bottle on a dark background with water droplets" class="w-full h-full object-cover rounded-lg shadow-lg" src="https://www.sanmiguelbrewery.com/wp-content/uploads/2021/09/RH-INSTAGRAM-9202019.jpg"/>
+                <div class="absolute bottom-4 left-4 right-4 flex justify-between bg-black bg-opacity-50 p-2 rounded-lg">
+                    <h2 class="text-2xl font-bold text-white">Alcoholic Beer</h2>
+                    <a href="alcoholicbeer.html" class="button mt-2" onclick="showBeerInfo('Alcoholic Beer')"><i class="fas fa-search mr-2"></i>View Now</a>
+                </div>
+            </div>
+            <div class="relative flex items-center justify-center">
+                <img alt="Desperados beer bottle on a dark background with neon lights" class="w-full h-full object-cover rounded-lg shadow-lg" src="https://www.thirsty.com.sg/cdn/shop/files/BrewdogPunkIPAMobile.png?v=1714015182&width=800"/>
+                <div class="absolute bottom-4 left-4 right-4 flex justify-between bg-black bg-opacity-50 p-2 rounded-lg">
+                    <h2 class="text-2xl font-bold text-white">Brewed in UK</h2>
+                    <a href="brewedinUK.html" class="button mt-2" onclick="showBeerInfo('Brewed in UK')"><i class="fas fa-search mr-2"></i>View Now</a>
+                </div>
+            </div>
+            <div class="relative flex items-center justify-center">
+                <img alt="Corona beer bottle on a dark background with bokeh lights" class="w-full h-full object-cover rounded-lg shadow-lg" src="https://www.blackhorsebrews.com/wp-content/uploads/2024/09/Blackhorse-Blonde-Ale-Side-Image-1.jpg"/>
+                <div class="absolute bottom-4 left-4 right-4 flex justify-between bg-black bg-opacity-50 p-2 rounded-lg">
+                    <h2 class="text-2xl font-bold text-white">Craft Beer</h2>
+                    <a href="craftbeer.html" class="button mt-2" onclick="showBeerInfo('Craft Beer')"><i class="fas fa-search mr-2"></i>View Now</a>
+                </div>
+            </div>
+            <div class="relative flex items-center justify-center">
+                <img alt="Elysian beer bottle on a dark background with wooden table" class="w-full h-full object-cover rounded-lg shadow-lg" src="https://scontent.fcgy1-1.fna.fbcdn.net/v/t39.30808-6/461250167_1026797882787403_7549674740776116750_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=anmdIdSRfWcQ7kNvwHjlouW&_nc_oc=AdkdVN-8mpw1DjPpOnh0nnp2XiGijqirLx69IAjXN3-dAc70p64Y5Ft32ywYUvkPuLw&_nc_zt=23&_nc_ht=scontent.fcgy1-1.fna&_nc_gid=EQabP9hHzN6ajpdK8jTA_Q&oh=00_AYGau7_newtD3aj6RWseAuZQuhtVzkhoJvprsVqwyV86lA&oe=67F50A5A"/>
+                <div class="absolute bottom-4 left-4 right-4 flex justify-between bg-black bg-opacity-50 p-2 rounded-lg">
+                    <h2 class="text-2xl font-bold text-white">Local Beverages</h2>
+                    <a href="pubhome.html" class="button mt-2" onclick="showBeerInfo('Local Beverages')"><i class="fas fa-search mr-2"></i>View Now</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

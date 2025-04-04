@@ -1,0 +1,120 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register Form</title>
+<!-- Favicon Link -->
+<link rel="icon" href="https://static.vecteezy.com/system/resources/thumbnails/044/277/504/small_2x/two-beer-mugs-splash-toast-cheers-on-isolated-transparent-background-png.png" type="image/png"/>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="admindlogin.css"> <!-- Link to your custom CSS file -->
+    <script>
+        function toggleForms() {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            loginForm.classList.toggle('hidden');
+            registerForm.classList.toggle('hidden');
+        }
+
+        function saveUserData(event) {
+            event.preventDefault(); // Prevent form submission
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+
+            // Save user data to local storage
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userPassword', password);
+
+            alert('Registration successful! You can now log in.');
+            toggleForms(); // Switch to login form after registration
+        }
+
+        function loginUser (event) {
+            event.preventDefault(); // Prevent form submission
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Retrieve user data from local storage
+            const storedEmail = localStorage.getItem('userEmail');
+            const storedPassword = localStorage.getItem('userPassword');
+
+            if (email === storedEmail && password === storedPassword) {
+                //alert('Login successful!');
+                window.location.href = 'admin.html'; // Redirect to Buyers Information page
+            } else {
+                alert('Invalid email or password. Please try again.');
+            }
+        }
+
+        function togglePasswordVisibility(id) {
+            const passwordField = document.getElementById(id);
+            const eyeIcon = document.getElementById(id + '-eye');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-900 bg-opacity-50">
+    <div class="relative bg-white bg-opacity-10 p-8 rounded-lg shadow-lg max-w-sm w-full transform transition-all duration-500 ease-in-out hover:scale-105">
+        <div class="relative text-center mb-6">
+            <img alt="Two beer mugs splash toast cheers on isolated transparent background" class="mx-auto mb-4" height="100" src="https://static.vecteezy.com/system/resources/thumbnails/044/277/504/small_2x/two-beer-mugs-splash-toast-cheers-on-isolated-transparent-background-png.png" width="100"/>
+            <h2 class="text-2xl font-bold text-white">Welcome Back</h2> <!-- Bold and white -->
+        </div>
+        
+        <!-- Login Form -->
+        <form id="login-form" onsubmit="loginUser (event)" class="relative">
+            <div class="relative mb-4">
+                <label class="block text-white mb-2 font-bold" for="email">Email</label>
+                <input class="w-full p-2 border border-gray-300 rounded bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500" id="email" placeholder="Enter your email" required type="email"/>
+            </div>
+            <div class="relative mb-4">
+                <label class="block text-white mb-2 font-bold" for="password">Password</label>
+                <input class="w-full p-2 border border-gray-300 rounded bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500" id="password" placeholder="Enter your password" required type="password"/>
+                <i class="fas fa-eye absolute right-3 top-10 text-white cursor-pointer" id="password-eye" onclick="togglePasswordVisibility('password')"></i>
+            </div>
+            <div class="flex items-center justify-between mb-6">
+                <label class="flex items-center text-white font-bold">
+                    <input class="form-checkbox text-blue-500 border-2 border-blue-500 rounded" type="checkbox"/>
+                    <span class="ml-2">Remember me</span>
+                </label>
+                <a class="text-white hover:underline font-bold" href="#">Forgot password?</a>
+            </div>
+            <button class="w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600 transition duration-300 transform hover:scale-105" type="submit">Sign In</button>
+        </form>
+
+        <div class="absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-10 p-4 rounded-full">
+            <div class="w-8 h-32 bg-white bg-opacity-10 rounded-full"></div>
+        </div>
+
+        <!-- Register Form -->
+        <form id="register-form" class="hidden" onsubmit="saveUserData(event)">
+            <div class="mb-4">
+                <label class="block text-white mb-2 font-bold" for="reg-email">Email</label>
+                <input class="w-full p-2 border border-gray-300 rounded bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500" id="reg-email" placeholder="Enter your email" required type="email"/>
+            </div>
+            <div class="mb-4 relative">
+                <label class="block text-white mb-2 font-bold" for="reg-password">Password</label>
+                <input class="w-full p-2 border border-gray-300 rounded bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500" id="reg-password" placeholder="Enter your password" required type="password"/>
+                <i class="fas fa-eye absolute right-3 top-10 text-white cursor-pointer" id="reg-password-eye" onclick="togglePasswordVisibility('reg-password')"></i>
+            </div>
+            <div class="mb-4 relative">
+                <label class="block text-white mb-2 font-bold" for="reg-confirm-password">Confirm Password</label>
+                <input class="w-full p-2 border border-gray-300 rounded bg-transparent text-white focus:outline-none focus:ring-2 focus:ring-blue-500" id="reg-confirm-password" placeholder="Confirm your password" required type="password"/>
+                <i class="fas fa-eye absolute right-3 top-10 text-white cursor-pointer" id="reg-confirm-password-eye" onclick="togglePasswordVisibility('reg-confirm-password')"></i>
+            </div>
+            <button class="w-full bg-blue-500 text-white py-2 rounded-lg font-semibold hover:bg-blue-600 transition duration-300 transform hover:scale-105">Sign Up</button>
+        </form>
+        <div class="text-center mt-4">
+            <button class="text-white hover:underline font-bold" onclick="toggleForms()">Already have an account? Sign In</button>
+        </div>
+    </div>
+</body>
+</html>

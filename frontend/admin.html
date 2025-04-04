@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Buyers Information</title>
+    <!-- Favicon Link -->
+    <link rel="icon" href="https://static.vecteezy.com/system/resources/thumbnails/044/277/504/small_2x/two-beer-mugs-splash-toast-cheers-on-isolated-transparent-background-png.png" type="image/png"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="admin.css"> <!-- Link to the external CSS file -->
+</head>
+<body class="bg-cover bg-center" style="background-image: url('https://tastecooking.com/wp-content/uploads/2024/06/NA-Beers-Ice-Bucket-3.jpg');"> <!-- Replace with your image URL -->
+    <div class="nav-links p-4 bg-white bg-opacity-80 shadow-md">
+        <a href="frontcover.html" class="text-blue-600 hover:underline"><i class="fas fa-home mr-2"></i>HOME</a>
+        <a href="beer.html" class="ml-4 text-blue-600 hover:underline"><i class="fas fa-beer mr-2"></i>BEERS</a>
+        <a href="about.html" class="ml-4 text-blue-600 hover:underline"><i class="fas fa-info-circle mr-2"></i>ABOUT</a>
+        <a href="cart.html" class="ml-4 text-blue-600 hover:underline"><i class="fas fa-shopping-cart mr-2"></i>CART</a>
+        <a href="contact.html" class="ml-4 text-blue-600 hover:underline"><i class="fas fa-envelope mr-2"></i>CONTACT</a>
+        <a href="receipt.html" class="ml-4 text-blue-600 hover:underline"><i class="fas fa-receipt mr-2"></i>RECEIPT</a>
+    </div>
+    <div class="container mx-auto p-6 bg-white bg-opacity-90 rounded-lg shadow-lg mt-6">
+        <h2 class="text-3xl font-bold mb-4 text-gray-800">Buyers Information</h2>
+        <table class="min-w-full bg-white border border-gray-300">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border px-4 py-2">Name</th>
+                    <th class="border px-4 py-2">Address</th>
+                    <th class="border px-4 py-2">Phone Number</th>
+                    <th class="border px-4 py-2">Total Price</th>
+                    <th class="border px-4 py-2">Action</th>
+                </tr>
+            </thead>
+            <tbody id="buyers-info">
+                <!-- Buyer information will be dynamically inserted here -->
+            </tbody>
+        </table>
+        <div class="mt-4 text-lg font-bold" id="total-price">Total Price: ₱0.00</div>
+    </div>
+
+    <script>
+        function formatPrice(price) {
+            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function loadBuyers() {
+            // Load buyers data from local storage
+            const buyers = JSON.parse(localStorage.getItem('buyers')) || [];
+            const buyersInfoContainer = document.getElementById('buyers-info');
+            buyersInfoContainer.innerHTML = '';
+            let totalPrice = 0;
+
+            buyers.forEach((buyer, index) => {
+                // Create a new row for each buyer
+                const row = buyersInfoContainer.insertRow();
+                const cellName = row.insertCell(0);
+                const cellAddress = row.insertCell(1);
+                const cellNumber = row.insertCell(2);
+                const cellTotalPrice = row.insertCell(3);
+                const cellAction = row.insertCell(4);
+                
+                cellName.innerText = buyer.name;
+                cellAddress.innerText = buyer.address;
+                cellNumber.innerText = buyer.number;
+                cellTotalPrice.innerText = `₱${formatPrice(buyer.totalPrice.toFixed(2))}`;
+                
+                // Add to total price
+                totalPrice += buyer.totalPrice;
+
+                // Create delete button
+                 const deleteButton = document.createElement('button');
+                 deleteButton.className = 'flex items-center bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition duration-200';
+                 deleteButton.onclick = () => deleteBuyer(index);
+
+                // Add the delete icon and text to the button
+                deleteButton.innerHTML = '<i class="fas fa-trash mr-2"></i>Delete';
+                cellAction.appendChild(deleteButton);
+            });
+
+            // Update total price display with animation
+            animateTotalPrice(totalPrice);
+        }
+
+        function animateTotalPrice(finalPrice) {
+            const totalPriceElement = document.getElementById('total-price');
+            let currentPrice = 0;
+            const duration = 2000; // Duration of the animation in milliseconds
+            const frameRate = 60; // Frames per second
+            const totalFrames = (duration / 1000) * frameRate; // Total frames for the animation
+            const increment = finalPrice / totalFrames; // Increment per frame
+
+            const animate = () => {
+                currentPrice += increment;
+                if (currentPrice < finalPrice) {
+                    totalPriceElement.innerText = `Total Price: ₱${formatPrice(currentPrice.toFixed(2))}`;
+                    requestAnimationFrame(animate);
+                } else {
+                    totalPriceElement.innerText = `Total Price: ₱${formatPrice(finalPrice.toFixed(2))}`;
+                }
+            };
+
+            animate();
+        }
+
+        function deleteBuyer(index) {
+            // Load buyers data from local storage
+            const buyers = JSON.parse(localStorage.getItem('buyers')) || [];
+            // Remove the buyer at the specified index
+            buyers.splice(index, 1);
+            // Save the updated buyers list back to local storage
+            localStorage.setItem('buyers', JSON.stringify(buyers));
+            // Reload the buyers information
+            loadBuyers();
+        }
+
+        window.onload = loadBuyers;
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Your Cart</title>
+    <!-- Favicon Link -->
+    <link rel="icon" href="https://static.vecteezy.com/system/resources/thumbnails/044/277/504/small_2x/two-beer-mugs-splash-toast-cheers-on-isolated-transparent-background-png.png" type="image/png"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            background-image: url('https://w.wallhaven.cc/full/1p/wallhaven-1pppw9.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .product-container {
+            background-color: rgba(255, 255, 255, 0.5); /* Adjusted to 50% opacity */
+            border-radius: 8px;
+            padding: 16px;
+            transition: transform 0.2s;
+        }
+        .product-container:hover {
+            transform: scale(1.05);
+        }
+        .product-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+        .total-price-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 8px;
+            margin-top: 10px;
+            text-align: center;
+            display: inline-block;
+        }
+        .ship-now-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .ship-now-button, .order-more-button {
+            background-color: #1b81f7;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+        .ship-now-button:hover, .order-more-button:hover {
+            background-color: #15addb;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <div class="flex justify-between w-full p-4 bg-black bg-opacity-70">
+        <nav class="flex space-x-4">
+            <a class="text-white hover:text-yellow-500" href="frontcover.html"><i class="fas fa-home mr-2"></i>HOME</a>
+            <a class="text-white hover:text-yellow-500" href="cart.html"><i class="fas fa-shopping-cart mr-2"></i>CART</a>
+            <a class="text-white hover:text-yellow-500" href="beer.html"><i class="fas fa-beer mr-2"></i>BEER</a>
+        </nav>
+    </div>
+
+    <main class="container mx-auto py-8 px-6">
+        <h2 class="text-xl font-bold text-black-600 mb-4">Your Cart</h2>
+        <div id="cart-items" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+        
+        <div class="total-price-container">
+            <div id="total-price" class="text-2xl font-bold">Total Price: ₱0.00</div>
+        </div>
+        
+        <div class="ship-now-container">
+            <button class="ship-now-button" onclick="shipNow()"><i class="fas fa-cash-register mr-2"></i>Order Now</button>
+            <a href="beer.html" class="order-more-button"><i class="fas fa-plus-circle mr-2"></i>Order More</a>
+        </div>
+    </main>
+
+    <script>
+        function formatPrice(price) {
+            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            cartItemsContainer.innerHTML = '';
+            let totalPrice = 0;
+
+            cart.forEach((item, index) => {
+                const priceWithoutPeso = parseFloat(item.price.replace('₱', '').replace(/,/g, ''));
+                const subtotal = (priceWithoutPeso * item.quantity).toFixed(2);
+                const productDiv = document.createElement('div');
+                productDiv.className = 'text-center product-container';
+                productDiv.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="product-image" />
+                    <p class="text-sm mt-2">${item.name}</p>
+                    <p class="text-lg font-bold text-black-600">₱${formatPrice(priceWithoutPeso.toFixed(2))} x ${item.quantity} = ₱${formatPrice(subtotal)}</p>
+                    <button class="mt-2 bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600" onclick="removeItem(${index})">Remove</button>
+                `;
+                cartItemsContainer.appendChild(productDiv);
+                totalPrice += parseFloat(subtotal);
+            });
+
+            animateTotalPrice(totalPrice);
+        }
+
+        function animateTotalPrice(finalPrice) {
+            const totalPriceElement = document.getElementById('total-price');
+            let currentPrice = 0;
+            const duration = 2000; // Duration of the animation in milliseconds
+            const frameRate = 60; // Frames per second
+            const totalFrames = (duration / 1000) * frameRate; // Total frames for the animation
+            const increment = finalPrice / totalFrames; // Increment per frame
+
+            const animate = () => {
+                currentPrice += increment;
+                if (currentPrice < finalPrice) {
+                    totalPriceElement.innerText = `Total Price: ₱${formatPrice(currentPrice.toFixed(2))}`;
+                    requestAnimationFrame(animate);
+                } else {
+                    totalPriceElement.innerText = `Total Price: ₱${formatPrice(finalPrice.toFixed(2))}`;
+                }
+            };
+
+            animate();
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        function shipNow() {
+            window.location.href = 'shipping.html'; // Redirect to the shipping information page
+        }
+
+        window.onload = loadCart;
+    </script>
+</body>
+</html>

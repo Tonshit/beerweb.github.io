@@ -1,0 +1,70 @@
+/* You can add custom styles here if needed */
+
+/* Example of custom styles */
+body {
+    font-family: 'Roboto', sans-serif; /* Set the font family for the body */
+}
+
+/* Button animation */
+button {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for scaling and shadow */
+}
+
+/* Navigation styles */
+header {
+    background-color: black; /* Background color for the header */
+}
+
+nav {
+    display: flex; /* Flexbox for navigation items */
+    justify-content: space-around; /* Space items evenly */
+    padding: 20px; /* Padding around the nav */
+}
+
+nav a {
+    color: yellow; /* Text color */
+    text-decoration: none; /* Remove underline */
+    padding: 10px 15px; /* Padding for links */
+    position: relative; /* Position for pseudo-element */
+    overflow: hidden; /* Hide overflow for animation */
+    transition: color 0.3s ease; /* Transition for color */
+}
+
+/* Animation for navigation links */
+nav a::before {
+    content: ''; /* Empty content for pseudo-element */
+    position: absolute; /* Position it absolutely */
+    left: 50%; /* Center it horizontally */
+    bottom: 0; /* Start from the bottom */
+    width: 100%; /* Full width */
+    height: 2px; /* Height of the underline */
+    background: rgba(255, 255, 0, 0.8); /* Yellow color */
+    transform: translateX(-50%) scaleX(0); /* Start scaled down */
+    transition: transform 0.3s ease; /* Transition for scaling */
+}
+
+nav a:hover {
+    color: rgba(255, 255, 0, 1); /* Change text color on hover */
+}
+
+nav a:hover::before {
+    transform: translateX(-50%) scaleX(1); /* Scale to full width on hover */
+}
+
+/* Button styles */
+button {
+    background-color: transparent; /* Transparent background */
+    border: 2px solid rgba(255, 255, 0, 0.8); /* Yellow border */
+    color: yellow; /* Text color */
+    padding: 10px 20px; /* Padding */
+    font-size: 1rem; /* Font size */
+    cursor: pointer; /* Pointer cursor */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Transition for transform and background color */
+}
+
+button:hover {
+    transform: scale(1.05); /* Slightly grow the button */
+    background-color: rgba(255, 255, 0, 0.2); /* Light yellow background on hover */
+}
+
+/* Add more custom styles as needed */

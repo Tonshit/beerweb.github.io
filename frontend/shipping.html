@@ -1,0 +1,435 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <title>Shipping Information</title>
+        <!-- Favicon Link -->
+        <link rel="icon" href="https://static.vecteezy.com/system/resources/thumbnails/044/277/504/small_2x/two-beer-mugs-splash-toast-cheers-on-isolated-transparent-background-png.png" type="image/png"/>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+        <style>
+        body {
+        background-image: url('https://micaelabrody.com/wp-content/uploads/2019/02/birdhouse-all-beer-mockup-necklabel.gif');
+        background-size: cover;
+        background-position: center;
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        display: flex; /* Use flexbox for centering */
+        flex-direction: column; /* Stack children vertically */
+        align-items: center; /* Center horizontally */
+        justify-content: center; /* Center vertically */
+        height: 100vh; /* Full viewport height */
+        overflow: hidden;
+        transition: background-color 0.3s ease, background-image 0.3s ease; /* Smooth transition for background */
+    }
+
+    /* Centered Message Styles */
+    .centered-message {
+        display: none; /* Hidden by default */
+        position: fixed; /* Fixed position */
+        top: 50%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Adjust for element size */
+        background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        padding: 30px; /* Padding for spacing */
+        border-radius: 16px; /* Rounded corners */
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+        z-index: 2000; /* Ensure it is above everything else */
+        text-align: center; /* Center text */
+        width: 400px; /* Wider width for semi-landscape orientation */
+        height: 250px; /* Increased height for a larger container */
+        color: black; /* Text color */
+    }
+
+    .logo {
+        width: 50px; /* Adjust logo size */
+        height: auto; /* Maintain aspect ratio */
+        position: absolute; /* Position logo */
+        top: 15px; /* Distance from the top */
+        left: 15px; /* Distance from the left */
+    }
+
+    .centered-message p {
+        font-size: 1rem; /* Standard font size for readability */
+        margin: 5px 0; /* Space between paragraphs */
+    }
+
+    #ok-button {
+        background-color: #0056b3; /* Primary button color */
+        color: white; /* Text color */
+        font-weight: bold; /* Bold text */
+        padding: 12px 24px; /* Larger padding for a bigger button */
+        border: none; /* Remove default border */
+        border-radius: 8px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor on hover */
+        transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+        font-size: 1rem; /* Standard font size */
+        margin-top: 15px; /* Space above the button */
+    }
+
+    #ok-button:hover {
+        background-color: #004494; /* Darker blue on hover */
+        transform: scale(1.05); /* Slightly enlarge on hover */
+    }
+
+    #ok-button:focus {
+        outline: none; /* Remove default focus outline */
+        box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); /* Add a glow effect on focus */
+    }
+
+    /* Link styles */
+    .centered-message a {
+        color: #0056b3; /* Link color */
+        text-decoration: none; /* Remove underline */
+    }
+
+    .centered-message a:hover {
+        text-decoration: underline; /* Underline on hover */
+    }
+
+    /* Other styles remain unchanged */
+    .nav-links {
+        display: flex;
+        justify-content: space-between; /* Space between links and theme toggle icon */
+        align-items: center; /* Center items vertically */
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 10px;
+        border-radius: 8px;
+        position: fixed; /* Fixed position */
+        top: 0; /* Align to the top */
+        left: 0;
+        right: 0;
+        z-index: 1000; /* Ensure it stays on top */
+        transition: background-color 0.3s ease; /* Smooth transition for nav background */
+    }
+
+    .nav-links a {
+        margin: 0 15px;
+        text-decoration: none;
+        color: #4A90E2;
+        font-weight: bold;
+        transition: color 0.3s ease; /* Smooth color transition */
+    }
+
+    .nav-links a:hover {
+        color: #0056b3; /* Change color on hover */
+    }
+
+    .theme-toggle {
+        cursor: pointer; /* Change cursor to pointer */
+        color: #4A90E2; /* Icon color */
+        transition: color 0.3s ease; /* Smooth color transition */
+    }
+
+    .theme-toggle:hover {
+        color: #0056b3; /* Change color on hover */
+    }
+
+    .form-container {
+        background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
+        border-radius: 12px;
+        padding: 32px;
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+        margin-top: 80px; /* Adjust this value based on the height of the nav */
+        position: relative; /* Ensure it is positioned relative to the body */
+        z-index: 1; /* Ensure it is below the nav */
+    }
+
+    .form-container:hover {
+        transform: scale(1.02);
+    }
+
+    .input-icon {
+        position: relative;
+    }
+
+    .input-icon input, .input-icon select {
+        padding-left: 2.5rem; /* Space for the icon */
+        transition: border-color 0.3s ease, all 0.3s ease; /* Smooth transition */
+    }
+
+    .input-icon input:focus, .input-icon select:focus {
+        border-color: #4A90E2; /* Change border color on focus */
+        box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+    }
+
+    .input-icon i {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #4A5568; /* Gray color */
+    }
+
+    .submit-button {
+        transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .submit-button:hover {
+        transform: scale(1.05);
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    /* Loading Spinner Styles */
+    .loader {
+        border: 8px solid #f3f3f3; /* Light grey */
+        border-top: 8px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .dark-mode {
+        background-color: #ffffff; /* Dark background */
+        color: #f7fafc; /* Light text */
+        background-image: url(https://images.unsplash.com/photo-1702647104860-9c76094d14c7?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); /* Remove background image in dark mode */
+    }
+
+    .dark-mode .form-container {
+        background-color: rgba(34, 34, 34, 0.8); /* Darker semi-transparent background */
+    }
+
+    .dark-mode .nav-links {
+        background-color: rgba(34, 34, 34, 0.8); /* Darker nav background */
+    }
+
+    .dark-mode .input-icon input,
+    .dark-mode .input-icon select {
+        background-color: rgba(255, 255, 255, 0.2); /* Darker input background */
+        color: #000000; /* Light text for inputs */
+        border: 1px solid #4A90E2; /* Border color for inputs */
+    }
+
+    .dark-mode .input-icon i {
+        color: #f7fafc; /* Light color for icons */
+    }
+
+    .dark-mode .submit-button {
+        background-color: #2b6cb0; /* Darker blue for button */
+    }
+
+    .dark-mode .submit-button:hover {
+        background-color: #2c5282; /* Darker blue on hover */
+    }
+
+    .hidden {
+        display: none;
+    }
+        </style>
+    </head>
+    <body class="text-gray-800">
+        <div class="nav-links">
+            <div class="flex">
+                <a href="frontcover.html" class="flex items-center">
+                    <i class="fas fa-home mr-2"></i> HOME
+                </a>
+                <a href="beer.html" class="flex items-center">
+                    <i class="fas fa-beer mr-2"></i> BEERS
+                </a>
+                <a href="about.html" class="flex items-center">
+                    <i class="fas fa-info-circle mr-2"></i> ABOUT
+                </a>
+                <a href="cart.html" class="flex items-center">
+                    <i class="fas fa-shopping-cart mr-2"></i> CART
+                </a>
+                <a href="contact.html" class="flex items-center">
+                    <i class="fas fa-envelope mr-2"></i> CONTACT
+                </a>
+            </div>
+            <i id="theme-toggle" class="fas fa-sun theme-toggle" title="Toggle Dark Mode"></i>
+        </div>
+        
+        <div class="form-container max-w-md mx-auto p-6">
+            <h2 class="text-6xl font-bold text-center mb-6 text-blue-600">Order Information</h2>
+            <h3 class="text-3xl font-bold text-center mb-3 text-blue-600">CHOIYAX INC.</h3>
+            <form id="shipping-form">
+                <div class="mb-4 input-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                    <label for="date" class="block text-sm font-medium">Date</label>
+                    <input type="text" id="date" name="date" required readonly class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-gray-100 cursor-not-allowed"/>
+                </div>
+                <div class="mb-4 input-icon">
+                    <i class="fas fa-user"></i>
+                    <label for="name" class="block text-sm font-medium">Name</label>
+                    <input type="text" id="name" name="name" required aria-label="Name" class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"/>
+                </div>
+                <div class="mb-4 input-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <label for="address" class="block text-sm font-medium">Address</label>
+                    <select id="address" name="address" required aria-label="Address" class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                        <option value="" disabled selected>Select your address</option>
+                        <option value="123 Main St, Zamboanga del Norte">123 Main St, Zamboanga del Norte</option>
+                        <option value="456 Elm St, Dipolog City">456 Elm St, Dipolog City</option>
+                        <option value="789 Oak St, Dapitan City">789 Oak St, Dapitan City</option>
+                        <option value="101 Pine St, Sindangan">101 Pine St, Sindangan</option>
+                        <option value="202 Cedar St, Liloy">202 Cedar St, Liloy</option>
+                        <option value="303 Birch St, Manukan">303 Birch St, Manukan</option>
+                        <option value="404 Maple St, Polanco">404 Maple St, Polanco</option>
+                        <option value="505 Walnut St, Roxas">505 Walnut St, Roxas</option>
+                        <option value="606 Cherry St, Sergio Osmeña">606 Cherry St, Sergio Osmeña</option>
+                        <option value="707 Ash St, Salug">707 Ash St, Salug</option>
+                        <option value="808 Fir St, Tampilisan">808 Fir St, Tampilisan</option>
+                        <option value="909 Spruce St, Godod">909 Spruce St, Godod</option>
+                        <option value="1010 Palm St, Siocon">1010 Palm St, Siocon</option>
+                        <option value="1111 Willow St, Sibuco">1111 Willow St, Sibuco</option>
+                        <option value="1212 Chestnut St, Labason">1212 Chestnut St, Labason</option>
+                        <option value="1313 Acacia St, Manukan">1313 Acacia St, Manukan</option>
+                        <option value="1414 Teak St, Polanco">1414 Teak St, Polanco</option>
+                        <option value="1515 Mahogany St, Dipolog City">1515 Mahogany St, Dipolog City</option>
+                        <option value="1616 Tamarind St, Dapitan City">1616 Tamarind St, Dapitan City</option>
+                        <option value="1717 Olive St, Sindangan">1717 Olive St, Sindangan</option>
+                        <option value="1818 Pecan St, Liloy">1818 Pecan St, Liloy</option>
+                    </select>
+                </div>
+                <div class="mb-4 input-icon">
+                    <i class="fas fa-phone"></i>
+                    <label for="number" class="block text-sm font-medium">Phone Number</label>
+                    <input type="tel" id="number" name="number" required aria-label="Phone Number" class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"/>
+                </div>
+                <button type="submit" class="submit-button w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition duration-200 transform">Submit</button>
+            </form>
+            
+            <!-- Sign Up Link -->
+            <div class="mt-4 text-center">
+                <p>Don't have an account? <a href="#" id="show-signup" class="text-blue-600 hover:underline">Sign Up</a></p>
+            </div>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div class="form-container max-w-md mx-auto p-6 hidden" id="signup-container">
+            <h2 class="text-6xl font-bold text-center mb-6 text-blue-600">Sign Up</h2>
+            <form id="signup-form">
+                <div class="mb-4 input-icon">
+                    <i class="fas fa-user"></i>
+                    <label for="signup-name" class="block text-sm font-medium">Name</label>
+                    <input type="text" id="signup-name" name="signup-name" required aria-label="Name" class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"/>
+                </div>
+                <div class="mb-4 input-icon">
+                    <i class="fas fa-envelope"></i>
+                    <label for="signup-email" class="block text-sm font-medium">Email</label>
+                    <input type="email" id="signup-email" name="signup-email" required aria-label="Email" class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"/>
+                </div>
+                <div class="mb-4 input-icon">
+                    <i class="fas fa-lock"></i>
+                    <label for="signup-password" class="block text-sm font-medium">Password</label>
+                    <input type="password" id="signup-password" name="signup-password" required aria-label="Password" class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"/>
+                </div>
+                <button type="submit" class="submit-button w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition duration-200 transform">Sign Up</button>
+            </form>
+            
+            <!-- Login Link -->
+            <div class="mt-4 text-center">
+                <p>Already have an account? <a href="#" id="show-login" class="text-blue-600 hover:underline">Log In</a></p>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loading" class="hidden fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+            <div class="loader"></div>
+        </div>
+
+        <!-- Centered Message -->
+        <div id="confirmation-message" class="centered-message">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/008/513/900/small_2x/beer-mugs-illustration-png.png" alt="Logo" class="logo" />
+            <p><strong>STAY HYDRATED!</strong></p>
+            <p>Your order has been submitted!</p>
+            <p><strong>Thank You!</strong>For Purchasing with us.</p>
+            <p>For Your Feedback Contact:</p>
+            <p><strong>Contact Number:</strong> +1234567890</p>
+            <p><strong>Email:</strong> <a href="https://www.craftbeermarket.ca/contact/" target="_blank">https://www.craftbeermarket.com</a></p>
+            <button id="ok-button" class="submit-button"><i class="fas fa-truck mr-2"></i>OK</button>
+        </div>
+
+        <script>
+            // Automatically set the current date
+            document.getElementById('date').value = new Date().toLocaleDateString();
+
+            document.getElementById('shipping-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Show loading spinner
+                document.getElementById('loading').classList.remove('hidden');
+
+                // Get the values from the form
+                const date = document.getElementById('date').value;
+                const name = document.getElementById('name').value;
+                const address = document.getElementById('address').value;
+                const number = document.getElementById('number').value;
+
+                // Store the values in local storage
+                localStorage.setItem('customerDate', date);
+                localStorage.setItem('customerName', name);
+                localStorage.setItem('customerAddress', address);
+                localStorage.setItem('customerNumber', number);
+
+                // Hide the form and show the confirmation message
+                document.querySelector('.form-container').style.display = 'none';
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('confirmation-message').style.display = 'block';
+            });
+
+            // Handle OK button click
+            document.getElementById('ok-button').addEventListener('click', function() {
+                // Redirect to the receipt page
+                window.location.href = 'receipt.html';
+            });
+
+            // Sign Up Form Submission
+            document.getElementById('signup-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // Here you can add logic to handle sign up, e.g., save user data
+                const signupName = document.getElementById('signup-name').value;
+                const signupEmail = document.getElementById('signup-email').value;
+                const signupPassword = document.getElementById('signup-password').value;
+
+                // Store user data in local storage (for demonstration purposes)
+                localStorage.setItem('userName', signupName);
+                localStorage.setItem('userEmail', signupEmail);
+                localStorage.setItem('userPassword', signupPassword);
+
+                alert('Sign up successful! You can now log in.');
+                // Optionally, you can clear the form
+                document.getElementById('signup-form').reset();
+            });
+
+            // Show Sign Up Form
+            document.getElementById('show-signup').addEventListener('click', function(event) {
+                event.preventDefault();
+                document.querySelector('.form-container').classList.add('hidden');
+                document.getElementById('signup-container').classList.remove('hidden');
+            });
+
+            // Show Login Form
+            document.getElementById('show-login').addEventListener('click', function(event) {
+                event.preventDefault();
+                document.getElementById('signup-container').classList.add('hidden');
+                document.querySelector('.form-container').classList.remove('hidden');
+            });
+
+            // Dark mode toggle
+            document.getElementById('theme-toggle').addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                // Toggle the icon
+                const icon = document.getElementById('theme-toggle');
+                if (document.body.classList.contains('dark-mode')) {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                } else {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            });
+        </script>
+    </body>
+    </html>

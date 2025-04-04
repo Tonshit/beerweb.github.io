@@ -1,0 +1,85 @@
+/* General Body Styles */
+body {
+    font-family: 'Arial', sans-serif; /* Set a default font */
+    background-color: rgba(0, 0, 0, 0.8); /* Fallback background color */
+ }
+ 
+ /* Navigation Styles */
+ nav {
+    display: flex; /* Flexbox for navigation items */
+    justify-content: space-around; /* Space items evenly */
+    padding: 20px; /* Padding around the nav */
+ }
+ 
+ nav a {
+    color: yellow; /* Text color */
+    text-decoration: none; /* Remove underline */
+    padding: 10px 15px; /* Padding for links */
+    position: relative; /* Position for pseudo-element */
+    overflow: hidden; /* Hide overflow for animation */
+    transition: color 0.3s ease; /* Transition for color */
+ }
+ 
+ /* Animation for navigation links */
+ nav a::before {
+    content: ''; /* Empty content for pseudo-element */
+    position: absolute; /* Position it absolutely */
+    left: 50%; /* Center it horizontally */
+    bottom: 0; /* Start from the bottom */
+    width: 100%; /* Full width */
+    height: 2px; /* Height of the underline */
+    background: rgba(255, 255, 0, 0.8); /* Yellow color */
+    transform: translateX(-50%) scaleX(0); /* Start scaled down */
+    transition: transform 0.3s ease; /* Transition for scaling */
+ }
+ 
+ nav a:hover {
+    color: rgba(255, 255, 0, 1); /* Change text color on hover */
+ }
+ 
+ nav a:hover::before {
+    transform: translateX(-50%) scaleX(1); /* Scale to full width on hover */
+ }
+ 
+ /* Main Content Styles */
+ h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Shadow for the main title */
+ }
+ 
+ p {
+    margin: 10px 0; /* Margin for paragraphs */
+ }
+ 
+ /* Button Styles */
+ a.bg-yellow-500 {
+    background-color: #fbbf24; /* Tailwind yellow */
+    color: black; /* Text color */
+    font-weight: bold; /* Bold text */
+    padding: 10px 20px; /* Padding for buttons */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Transition for background */
+ }
+ 
+ a.bg-yellow-500:hover {
+    background-color: #facc15; /* Lighter yellow on hover */
+ }
+ 
+ /* Footer Styles */
+ footer {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent footer */
+    padding: 20px; /* Padding for footer */
+    position: relative; /* Positioning context */
+ }
+ 
+ footer p {
+    margin: 5px 0; /* Margin for footer paragraphs */
+ }
+ 
+ footer a {
+    color: yellow; /* Footer link color */
+    transition: color 0.3s ease; /* Transition for color */
+ }
+ 
+ footer a:hover {
+    color: rgba(255, 255, 0, 1); /* Change color on hover */
+ }

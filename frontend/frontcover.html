@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>CHOIYAX INC.</title>
+    
+    <!-- Favicon Link -->
+    <link rel="icon" href="https://static.vecteezy.com/system/resources/thumbnails/044/277/504/small_2x/two-beer-mugs-splash-toast-cheers-on-isolated-transparent-background-png.png" type="image/png"/>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="frontcover.css"> <!-- Link to the CSS file -->
+    <style>
+        .bg-slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .bg-slideshow img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .bg-slideshow img.active {
+            opacity: 1;
+        }
+        .text-overlay {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Adjust shadow color and size */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <header class="bg-black bg-opacity-50 fixed w-full z-10">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <div class="flex items-center">
+                <img alt="Stone Brewing logo" class="h-10 w-10" src="https://static.vecteezy.com/system/resources/thumbnails/044/277/504/small_2x/two-beer-mugs-splash-toast-cheers-on-isolated-transparent-background-png.png"/>
+                <span class="ml-3 text-xl font-bold">CHOIYAX INC.</span>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a class="text-white hover:text-yellow-500 transition duration-300" href="frontcover.html"><i class="fas fa-home mr-2"></i> HOME</a>
+                <a class="text-white hover:text-yellow-500 transition duration-300" href="beer.html"> <i class="fas fa-beer mr-2"></i> BEERS</a>
+                <a class="text-white hover:text-yellow-500 transition duration-300" href="about.html"> <i class="fas fa-info-circle mr-2"></i> ABOUT</a>
+                <a class="text-white hover:text-yellow-500 transition duration-300" href="cart.html"><i class="fas fa-shopping-cart mr-2"></i> CART</a>
+                <a class="text-white hover:text-yellow-500 transition duration-300" href="event.html"><i class="fas fa-calendar mr-2"></i> EVENTS</a>
+                <a class="text-white hover:text-yellow-500 transition duration-300" href="https://beerandbrewing.com/category/Beer%20News/1/"><i class="fas fa-newspaper mr-2"></i>NEWS</a>
+                <a class="text-white hover:text-yellow-500 transition duration-300" href="https://www.istockphoto.com/photos/drinking-beer"><i class="fas fa-images mr-2"></i> GALLERY</a>
+                <a class="text-white hover:text-yellow-500 transition duration-300" href="contact.html"><i class="fas fa-envelope mr-2"></i> CONTACT</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <a class="hover:text-gray-400" href="cart.html">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    <main class="relative h-screen flex items-center justify-center">
+        <div class="bg-slideshow">
+            <img class="active" src="https://images.pexels.com/photos/8699834/pexels-photo-8699834.jpeg?cs=srgb&dl=pexels-aeryk-bautista-78974286-8699834.jpg&fm=jpg" alt="Background Image 1"/>
+            <img src="https://images.summitmedia-digital.com/spotph/images/2024/09/18/adobestock-428306739-editorial-u-1726627361.jpg" alt="Background Image 2"/>
+            <img src="https://jandadrinks.co.uk/wp-content/uploads/2021/08/BrewDog-1.jpg" alt="Background Image 3"/>
+            <img src="https://tastecooking.com/wp-content/uploads/2024/06/NA-Beers-Ice-Bucket-3.jpg" alt="Background Image 4"/>
+            <img src="https://www.shutterstock.com/image-photo/ashdod-israel-july-07-2023-600nw-2329172971.jpg" alt="Background Image 5"/>
+            <img src="https://skinnybrands.com/wp-content/uploads/2024/07/cans-931546_1280.jpg" alt="Background Image 6"/>
+            <img src="https://framerusercontent.com/images/tDi9KTW9hN739U6rgbJO3XXVKc.webp" alt="Background Image 7"/>
+            <img src="https://futuredeluxe.com/wp-content/uploads/2022/04/02_circular_crop.jpg" alt="Background Image 8"/>
+            <img src="https://cdn.artstation.com/p/thumbnails/001/881/912/thumb.jpg" alt="Background Image 9"/>
+            <img src="https://media.interaksyon.com/wp-content/uploads/2018/09/the-bar-gin_4.jpg" alt="Background Image 10"/>
+        </div>
+        <div class="text-overlay">
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-shadow">WE'VE TASTED LOVE<br/>AND ALCOHOL,<br/>WE HIGHLY RECOMMEND ALCOHOL</h1>
+            <a href="beer.html">
+                <button class="mt-6 px-8 py-3 bg-white text-black font-semibold rounded"> <i class="fas fa-beer mr-2"></i> SHOP NOW</button>
+            </a>
+        </div>
+    </main>
+    <script>
+        const images = document.querySelectorAll('.bg-slideshow img');
+        let currentIndex = 0;
+        const delay = 3000; // 3 seconds
+
+        function changeImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+        }
+
+        setInterval(changeImage, delay);
+    </script>
+</body>
+</html>
